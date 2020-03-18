@@ -295,12 +295,10 @@ S3Storage.prototype._handleFile = function(req, file, cb) {
       params.ContentDisposition = opts.contentDisposition;
     }
     if (file.mimetype.includes("image")) {
-      var imageStream = sharp()
-        .rotate()
-        .withMetadata();
+      var imageStream = sharp().rotate();
 
       if (opts.resize) imageStream = imageStream.resize(opts.resizeOpts);
-      // {imageStream = imageStream
+      imageStream = imageStream.withMetadata();
       var sharpStreamed = file.stream.pipe(imageStream);
 
       var metadata = await sharpStreamed.toBuffer({

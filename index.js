@@ -211,7 +211,6 @@ function S3Storage(opts) {
     default:
       throw new TypeError("Expected opts.resize to be undefined or boolean");
   }
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>", opts);
   if (opts.resize) {
     switch (typeof opts.resizeOpts) {
       case "object":
